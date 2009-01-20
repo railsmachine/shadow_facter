@@ -2,6 +2,7 @@ require 'facter'
 
 module ShadowFacter
   
+  # Returns lower case module name without "Facts" and appended with "_".
   def prefix
     to_s.downcase.gsub("facts", "_")
   end
