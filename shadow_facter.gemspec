@@ -14,11 +14,11 @@ Gem::Specification.new do |s|
     "lib/shadow_facter.rb",
     "lib/shadow_facter/facts.rb",
   ]
-  s.has_rdoc = false
+  s.has_rdoc = true
   s.homepage = %q{http://railsmachine.com}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.2.0}
-  s.summary = %q{Facter object wrapper}
+  s.summary = %q{Facter helpers}
 
   s.add_dependency(%q<facter>, [">= 1.5.2"])
 end
