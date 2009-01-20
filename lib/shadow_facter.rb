@@ -1,6 +1,7 @@
 require 'facter'
 
 # To use the module helpers, 'extend ShadowFacter'.
+# Modules that extend ShadowFacter behave like standard Facter plugins.
 
 module ShadowFacter
   
@@ -10,13 +11,13 @@ module ShadowFacter
     to_s.downcase.gsub("facts", "_")
   end
   
-  # Defines a fact using a value or block. Can be confined with a hash.
+  # Defines a fact in Facter using a value or block. Can be confined with a hash.
   #
   # Examples:
-  # fact :tea, "oolong"
-  # fact :tea, "puerh", {:season => "winter"}
-  # fact :uptime, exec("uptime")
-  # fact(:rand) { rand }
+  #   fact :tea, "oolong"
+  #   fact :tea, "puerh", {:season => "winter"}
+  #   fact :uptime, exec("uptime")
+  #   fact(:rand) { rand }
   
   def fact(key, value=nil, confine_args={}, &block)
     name = key.to_s
