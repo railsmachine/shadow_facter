@@ -11,8 +11,7 @@ Gem::Specification.new do |s|
   #s.executables = ["shadowfacter"]
   s.files = [
     "Readme",
-    "lib/shadow_facter.rb",
-    "lib/shadow_facter/facts.rb",
+    "lib/shadow_facter.rb"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://railsmachine.com}

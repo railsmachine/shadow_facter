@@ -1,1 +1,20 @@
 = Shadow Facter
+A simple wrapper for creating Facter plugins using helper methods and builtin namespacing.
+
+Example:
+
+require 'shadow_facter'
+module TestFacts
+  extend ShadowFacter
+  
+  fact :drink, "tea"
+  fact :uname, exec("uname")
+  fact :food do 
+    "p" + "izz" + "a"
+  end
+  
+  fact :beer, "420", :test_drink => "beer"
+  fact :tea, "oolong", :test_drink => "tea"
+end
+
+You can stick this in any directory supported by Facter (FACTERLIB) or use it standalone in via ruby.

@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe "facts module" do
-  
   it "creates existence check" do
     TestFacts.drink?.should be(true)
   end
