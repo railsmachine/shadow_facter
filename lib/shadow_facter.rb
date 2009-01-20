@@ -1,7 +1,9 @@
 require 'facter'
 
 # To use the module helpers, 'extend ShadowFacter'.
-# Modules that extend ShadowFacter behave like standard Facter plugins.
+# Modules that extend ShadowFacter behave like standard Facter plugins. Automatically
+# namespaces the fact names based on the containing module name. Example, the RubyFacts
+# module prefixs all facts with "ruby_" in raw puppet.
 
 module ShadowFacter
   
@@ -30,7 +32,7 @@ module ShadowFacter
     end
   end
   
-  # Delegates to Facter.
+  # Delegates to Facter and provides ModName.factname.
   
   def method_missing(name, *args)
     facter_name = prefix + name.to_s
