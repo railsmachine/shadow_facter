@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby 
+#
+# = Synopsis
+#
+# Collect and display facts about the system using Facter.
+#
+# = Usage
+#
+#   sfacter [MyFacts] [MyOtherFacts] [...]
+#
+# = Description
+#
+# Collect and display facts about the current system using Facter.
+#
+# If no facts are specifically asked for, then all facts in FACTERLIB will be returned.
+# 
+#
+# = Example
+#
+#   sfacter kernel
+#
+# = Author
+#
+# Bradley Taylor
+#
+# = Copyright
+#
+# Copyright (c) 2009 Rails Machine, LLC
+# Licensed under the Lesser GNU Public License
+
+require 'rubygems'
+require 'json'
+require 'shadow_facter'
+
+
+# require builtin Facts
+Dir.chdir File.join(File.dirname(__FILE__), "..", "lib")
+Dir.glob('*.rb') { |f| require f }
+
+# require Facter lib Facts
+if ENV.key?("FACTERLIB")
+  Dir.chdir ENV['FACTERLIB']
+  Dir.glob('*.rb') { |f| require f }
+end
+ 
+ARGV.each do |name|
+  j = eval "#{name}.to_json"
+  puts j
+end
+
+
+
