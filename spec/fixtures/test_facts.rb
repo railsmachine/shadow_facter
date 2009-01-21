@@ -1,3 +1,5 @@
+require 'shadow_facter'
+
 module TestFacts
   extend ShadowFacter
   

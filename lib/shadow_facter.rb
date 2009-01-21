@@ -16,7 +16,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 # 
 #--
-
 require 'facter'
 
 # To use the module helpers, 'extend ShadowFacter'.
@@ -37,29 +36,29 @@ module ShadowFacter
 
   # Returns a fact value by key. Returns nil if non-existent or not constrained.
   def [](key)
-    facter_fact_value(key)
+    value(key)
   end
 
-  # Returns the value of a Facter fact.
-  def facter_fact_value(key)
+  # Returns a fact value by key. Returns nil if non-existent or not constrained.
+  def value(key)
     f = Facter[facter_key(key)]
     f.value unless f.nil?
   end
   
   # Return an array of all of the constrained fact keys.
   def keys
-    @keys.uniq.select { |k| !facter_fact_value(k).nil? }
+    @keys.uniq.select { |k| !value(k).nil? }
   end
 
   # Return a boolean on the availability of a fact.
   def has_fact?(key)
-    !facter_fact_value(key).nil?
+    !value(key).nil?
   end
   
   # Return a hash of all of the constrained fact keys and values.
   def to_hash
     keys.inject({}) do |h, k| 
-      h[k] = facter_fact_value(k)
+      h[k] = value(k)
       h
     end
   end
@@ -73,7 +72,7 @@ module ShadowFacter
   # Return json of all of the constrained fact keys and values.
   def to_json
     require 'json'
-    to_hash.to_json
+    JSON.pretty_generate to_hash
   end
   
   # Defines a fact in Facter using a value or block. Can be confined with a hash.
