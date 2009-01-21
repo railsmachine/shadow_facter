@@ -35,8 +35,11 @@ require 'shadow_facter/facts'
 
 # require Facter lib Facts
 if ENV.key?("FACTERLIB")
-  Dir.chdir ENV['FACTERLIB']
-  Dir.glob('*.rb') { |f| require f }
+  paths = ENV['FACTERLIB'].split ":"
+  paths.each do |p|
+    Dir.chdir p
+    Dir.glob('*.rb') { |f| require f }
+  end
 end
  
 ARGV.each do |name|
