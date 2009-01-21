@@ -31,11 +31,7 @@
 require 'rubygems'
 require 'json'
 require 'shadow_facter'
-
-
-# require builtin Facts
-Dir.chdir File.join(File.dirname(__FILE__), "..", "lib")
-Dir.glob('*.rb') { |f| require f }
+require 'shadow_facter/facts'
 
 # require Facter lib Facts
 if ENV.key?("FACTERLIB")

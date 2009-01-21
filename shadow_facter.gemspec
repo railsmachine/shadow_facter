@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.files = [
     "Readme",
     "lib/shadow_facter.rb",
+    "lib/facts.rb",
     "lib/facts/kernel_facts.rb",
     "lib/facts/network_facts.rb",
     "bin/sfacter"
