@@ -17,7 +17,7 @@
 #
 # = Example
 #
-#   sfacter kernel
+#   sfacter KernelTest
 #
 # = Author
 #
