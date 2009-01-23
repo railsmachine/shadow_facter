@@ -1,8 +1,6 @@
 require 'shadow_facter'
 
-module KernelFacts
-  extend ShadowFacter
-
+namespace :kernel do
   fact :name do
     exec "uname -s"
   end
@@ -12,6 +10,6 @@ module KernelFacts
   end
 
   fact :version do
-    self[:release].to_s.split('.')[0]
+    value(:release).to_s.split('.')[0]
   end
 end

@@ -1,10 +1,9 @@
 require 'shadow_facter'
 
-module NetworkFacts
-  extend ShadowFacter
-
+namespace :network do
   fact :hostname do
     exec "hostname"
   end
 
 end
+

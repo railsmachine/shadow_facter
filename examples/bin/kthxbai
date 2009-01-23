@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'sinatra'
+ 
+require 'shadow_facter'
+
+# Load from current directory
+Dir.glob('*.rb') { |f| load f }
+
+get '/:name' do
+  j = facts params[:name].to_s
+  j.to_json
+end

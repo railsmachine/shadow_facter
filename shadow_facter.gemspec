@@ -12,9 +12,7 @@ Gem::Specification.new do |s|
   s.files = [
     "Readme",
     "lib/shadow_facter.rb",
-    "lib/shadow_facter/facts.rb",
-    "lib/shadow_facter/facts/kernel_facts.rb",
-    "lib/shadow_facter/facts/network_facts.rb",
+    "lib/shadow_facter/base.rb",
     "bin/sfacter"
   ]
   s.has_rdoc = true

@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby 
+#!/usr/bin/env ruby
 #
 # = Synopsis
 #
@@ -17,7 +17,7 @@
 #
 # = Example
 #
-#   sfacter KernelTest
+#   sfacter kernel
 #
 # = Author
 #
@@ -29,22 +29,16 @@
 # Licensed under the Lesser GNU Public License
 
 require 'rubygems'
-require 'json'
 require 'shadow_facter'
-require 'shadow_facter/facts'
 
-# require Facter lib Facts
-if ENV.key?("FACTERLIB")
-  paths = ENV['FACTERLIB'].split ":"
-  paths.each do |p|
-    Dir.chdir p
-    Dir.glob('*.rb') { |f| require f }
-  end
-end
+
+# Load from current directory
+Dir.glob('*.rb') { |f| load f }
+
  
 ARGV.each do |name|
-  j = eval "#{name}.to_json"
-  puts j
+  j = facts name.to_s
+  puts j.to_json
 end
 
 
