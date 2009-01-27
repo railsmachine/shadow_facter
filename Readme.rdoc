@@ -1,10 +1,10 @@
-# = ShadowFacter
-#
-# ShadowFacter is a Ruby DSL for Facter, extracted out of the work we at Rails
-# Machine are doing on Moonshine[http://blog.railsmachine.com/articles/2009/01/16/moonshine-configuration-management-and-deployment/].
-#
-# ShadowFacter provides a DSL for creating facts and processing them using Facter.
-# For documentation on writing these manifests, please see
-# ShadowFacter::Base.
-#
-# A binary[link:files/bin/shadow_facter.html] is provided to parse facts.
+=ShadowFacter
+
+ShadowFacter is a Ruby DSL for Facter, extracted out of the work we at Rails
+ Machine are doing on Moonshine[http://blog.railsmachine.com/articles/2009/01/16/moonshine-configuration-management-and-deployment/].
+
+ ShadowFacter provides a DSL for creating facts and processing them using Facter.
+ For documentation on writing these manifests, please see
+ ShadowFacter::Base.
+
+A binary[link:files/bin/shadow_facter.html] is provided to parse facts.
