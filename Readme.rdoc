@@ -7,5 +7,5 @@ ShadowFacter provides a DSL for creating facts and processing them using Facter.
 For documentation on writing these manifests, please see
 ShadowFacter::Base.
 
-A binary[link:files/bin/shadow_facter.html] is provided to parse facts.
+A binary[http://railsmachine.github.com/shadow_facter/files/bin/shadow_facter.html] is provided to parse facts.
 
