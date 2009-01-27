@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: base.rb [ShadowFacter documentation]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <link href='../../.././rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>base.rb</h1>
+        <div class='paths'>
+          lib/shadow_facter/base.rb
+          (<a href="http://github.com/railsmachine/shadow_facter/tree/master/lib/shadow_facter/base.rb">view online</a>)
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>Tue Jan 27 09:27:13 -0500 2009</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <pre>ShadowFacter allows the simple definition and gathering of facts&#x000A;using Facter[http://reductivelabs.com/projects/facter/]</pre>
+            <h2>Sample facts:</h2>
+            <pre>$ cat examples/lib/facts/kernel.rb&#x000A;require 'shadow_facter'&#x000A;&#x000A;namespace :kernel do&#x000A;  fact :name do&#x000A;    exec &quot;uname -s&quot;&#x000A;  end&#x000A;&#x000A;  fact :release do&#x000A;    exec &quot;uname -r&quot;&#x000A;  end&#x000A;&#x000A;  fact :version do&#x000A;    value(:release).to_s.split('.')[0]&#x000A;  end&#x000A;end</pre>
+            <h2>Executing this fact:</h2>
+            <pre>$ bin/shadow_facter examples/lib/facts/kernel.rb&#x000A;kernel_name =&gt; Darwin&#x000A;kernel_version =&gt; 9&#x000A;kernel_release =&gt; 9.6.0&#x000A;$</pre>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000005">exec</a></li>
+              <li><a href="#M000003">fact</a></li>
+              <li><a href="#M000004">facts</a></li>
+              <li><a href="#M000002">namespace</a></li>
+              <li><a href="#M000001">namespaces</a></li>
+            </ol>
+          </div>
+          <div id='context'>
+            <div id='requires'>
+              <h2>Required files</h2>
+              <ol>
+                <li>facter</li>
+                <li>yaml</li>
+                <li>json</li>
+              </ol>
+            </div>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='public-instance method' id='method-M000005'>
+                <a name='M000005'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>exec</span>
+                  <span class='arguments'>(command)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  System execute helper.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000005-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000005-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 169</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exec</span>(<span class="ruby-identifier">command</span>)&#x000A;  <span class="ruby-constant">Facter</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolution</span>.<span class="ruby-identifier">exec</span>(<span class="ruby-identifier">command</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000003'>
+                <a name='M000003'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>fact</span>
+                  <span class='arguments'>(key, value=nil, confine_args={}, &amp;b)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Defines a fact in Facter using a value or block. Can be confined with a
+                  hash.
+                  </p>
+                  <p>
+                  Examples:
+                  </p>
+                  <pre>fact :tea, &quot;oolong&quot;&#x000A;fact :tea, &quot;puerh&quot;, {:season =&gt; &quot;winter&quot;}&#x000A;fact(:rand) { rand }</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000003-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000003-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 159</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fact</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">confine_args</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">fact</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">confine_args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000004'>
+                <a name='M000004'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>facts</span>
+                  <span class='arguments'>(namespace)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns an instance of the Facts class for the specified namespace.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000004-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000004-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 164</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">facts</span>(<span class="ruby-identifier">namespace</span>)&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">facts</span>(<span class="ruby-identifier">namespace</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000002'>
+                <a name='M000002'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>namespace</span>
+                  <span class='arguments'>(name, &amp;b)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Defines a namespace
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000002-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000002-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 149</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespace</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">namespace</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000001'>
+                <a name='M000001'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>namespaces</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns known namespaces
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000001-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000001-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 144</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>()&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">namespaces</span>&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>
