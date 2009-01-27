@@ -2,11 +2,15 @@
 
 require 'rubygems'
 require 'sinatra'
- 
 require 'shadow_facter'
 
-# Load from current directory
-Dir.glob('*.rb') { |f| load f }
+filename = ARGV[0]
+raise ArgumentError unless filename
+
+require 'rubygems'
+require 'shadow_facter'
+
+load filename
 
 get '/:name' do
   j = facts params[:name].to_s

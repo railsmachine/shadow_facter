@@ -1,0 +1,98 @@
+#!/usr/bin/env ruby
+#== Sample facts:
+#
+#  $ cat examples/lib/facts/kernel.rb 
+#  require 'shadow_facter'
+#
+#  namespace :kernel do
+#    fact :name do
+#      exec "uname -s"
+#    end
+#
+#    fact :release do
+#      exec "uname -r"
+#    end
+#
+#    fact :version do
+#      value(:release).to_s.split('.')[0]
+#    end
+#  end
+#
+#== Executing this fact:
+#
+# $ bin/shadow_facter examples/lib/facts/kernel.rb
+# kernel_name => Darwin
+# kernel_version => 9
+# kernel_release => 9.6.0
+#  $
+#
+# The shadow_facter binary parses the given ruby code, which is
+# expected to contain a definition of a namespace and some facts. Facts are 
+# gathered and outputed.
+
+begin
+
+  require 'optparse'
+  opts = OptionParser.new do |opts|
+    opts.banner = <<-EOF
+    NAME
+      ShadowFacter
+
+    AUTHOR
+      Bradley Taylor
+      bradley@railsmachine.com
+
+    DESCRIPTION
+      A Ruby DSL for Facter
+
+    EXAMPLES
+      Sample fact:
+      
+        $ cat examples/lib/facts/kernel.rb 
+        require 'shadow_facter'
+      
+        namespace :kernel do
+          fact :name do
+            exec "uname -s"
+          end
+      
+          fact :release do
+            exec "uname -r"
+          end
+      
+          fact :version do
+            value(:release).to_s.split('.')[0]
+          end
+        end
+      
+      Executing this fact:
+      
+        $ bin/shadow_facter examples/lib/facts/kernel.rb
+        kernel_name => Darwin
+        kernel_version => 9
+        kernel_release => 9.6.0
+        $
+      
+      The shadow_facter binary parses the given ruby code, which is
+      expected to contain a definition of a namespace and some facts. Facts are 
+      gathered and returned and pretty printed.
+      
+  EOF
+  end
+
+  opts.parse!
+
+  filename = ARGV[0]
+  raise ArgumentError unless filename
+  
+  require 'rubygems'
+  require 'shadow_facter'
+
+  load filename
+
+  namespaces.each do |namespace|
+    facts(namespace).to_hash.each do |k, v|
+      puts namespace.to_s + "_" + k.to_s + " => " + v.to_s
+    end
+  end
+end
