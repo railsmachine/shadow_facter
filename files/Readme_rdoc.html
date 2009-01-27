@@ -32,7 +32,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>Tue Jan 27 09:30:17 -0500 2009</span>
+          <span class='datetime'>Tue Jan 27 11:22:35 -0500 2009</span>
         </div>
       </div>
       <div id='content'>
@@ -46,15 +46,18 @@
             </p>
             <p>
             <a href="../classes/ShadowFacter.html">ShadowFacter</a> provides a DSL for
-            creating facts and processing them using Facter. For documentation on
-            writing these manifests, please see <a
-            href="http://railsmachine.github.com/shadow_facter/classes/ShadowFacter/Base.html">ShadowFacter::Base</a>.
-            </p>
-            <p>
-            A <a
+            creating facts and processing them using Facter. A <a
             href="http://railsmachine.github.com/shadow_facter/files/bin/shadow_facter.html">binary</a>
             is provided to parse facts.
             </p>
+            <p>
+            Example:
+            </p>
+            <pre>$ cat examples/lib/facts/kernel.rb&#x000A; require 'shadow_facter'&#x000A;&#x000A; namespace :kernel do&#x000A;   fact :name do&#x000A;     exec &quot;uname -s&quot;&#x000A;   end&#x000A;&#x000A;   fact :release do&#x000A;     exec &quot;uname -r&quot;&#x000A;   end&#x000A;&#x000A;   fact :version do&#x000A;     value(:release).to_s.split('.')[0]&#x000A;   end&#x000A; end</pre>
+            <p>
+            Executing this fact:
+            </p>
+            <pre>$ bin/shadow_facter examples/lib/facts/kernel.rb&#x000A;kernel_name =&gt; Darwin&#x000A;kernel_version =&gt; 9&#x000A;kernel_release =&gt; 9.6.0</pre>
           </div>
           <div id='section'>
           </div>

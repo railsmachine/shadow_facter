@@ -73,7 +73,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000013-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000013-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 38</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">keys</span>)&#x000A;      <span class="ruby-ivar">@namespace</span> = <span class="ruby-identifier">namespace</span>&#x000A;      <span class="ruby-ivar">@keys</span> = <span class="ruby-identifier">keys</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000013-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 10</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">keys</span>)&#x000A;      <span class="ruby-ivar">@namespace</span> = <span class="ruby-identifier">namespace</span>&#x000A;      <span class="ruby-ivar">@keys</span> = <span class="ruby-identifier">keys</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
@@ -92,7 +92,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000014-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000014-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 44</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">key</span>)&#x000A;      <span class="ruby-identifier">value</span>(<span class="ruby-identifier">key</span>)&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000014-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 16</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">key</span>)&#x000A;      <span class="ruby-identifier">value</span>(<span class="ruby-identifier">key</span>)&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000017'>
@@ -110,7 +110,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000017-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000017-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 60</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_fact?</span>(<span class="ruby-identifier">key</span>)&#x000A;      <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">nil?</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000017-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 32</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_fact?</span>(<span class="ruby-identifier">key</span>)&#x000A;      <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>(<span class="ruby-identifier">key</span>).<span class="ruby-identifier">nil?</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000016'>
@@ -128,7 +128,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000016-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000016-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 55</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">keys</span>&#x000A;      <span class="ruby-ivar">@keys</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>(<span class="ruby-identifier">k</span>).<span class="ruby-identifier">nil?</span> }&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000016-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 27</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">keys</span>&#x000A;      <span class="ruby-ivar">@keys</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>(<span class="ruby-identifier">k</span>).<span class="ruby-identifier">nil?</span> }&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000021'>
@@ -146,7 +146,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000021-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000021-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 85</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reload!</span>&#x000A;      <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-constant">Facter</span>[<span class="ruby-constant">Base</span>.<span class="ruby-identifier">facter_key</span>(<span class="ruby-ivar">@namespace</span>, <span class="ruby-identifier">key</span>)].<span class="ruby-identifier">flush</span> }&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000021-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 57</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reload!</span>&#x000A;      <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-constant">Facter</span>[<span class="ruby-constant">Base</span>.<span class="ruby-identifier">facter_key</span>(<span class="ruby-ivar">@namespace</span>, <span class="ruby-identifier">key</span>)].<span class="ruby-identifier">flush</span> }&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000018'>
@@ -164,7 +164,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000018-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000018-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 65</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_hash</span>&#x000A;      <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">inject</span>({}) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span>&#x000A;        <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">value</span>(<span class="ruby-identifier">k</span>)&#x000A;        <span class="ruby-identifier">h</span>&#x000A;      <span class="ruby-keyword kw">end</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000018-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 37</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_hash</span>&#x000A;      <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">inject</span>({}) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span>&#x000A;        <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">value</span>(<span class="ruby-identifier">k</span>)&#x000A;        <span class="ruby-identifier">h</span>&#x000A;      <span class="ruby-keyword kw">end</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000020'>
@@ -182,7 +182,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000020-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000020-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 79</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_json</span>&#x000A;      <span class="ruby-identifier">require</span> <span class="ruby-value str">'json'</span>&#x000A;      <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">pretty_generate</span> <span class="ruby-identifier">to_hash</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000020-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 51</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_json</span>&#x000A;      <span class="ruby-identifier">require</span> <span class="ruby-value str">'json'</span>&#x000A;      <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">pretty_generate</span> <span class="ruby-identifier">to_hash</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000019'>
@@ -200,7 +200,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000019-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000019-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 73</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_yaml</span>&#x000A;      <span class="ruby-identifier">require</span> <span class="ruby-value str">'yaml'</span>&#x000A;      <span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">to_yaml</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000019-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 45</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_yaml</span>&#x000A;      <span class="ruby-identifier">require</span> <span class="ruby-value str">'yaml'</span>&#x000A;      <span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">to_yaml</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000015'>
@@ -218,7 +218,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000015-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000015-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 49</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">value</span>(<span class="ruby-identifier">key</span>)&#x000A;      <span class="ruby-identifier">f</span> = <span class="ruby-constant">Facter</span>[<span class="ruby-constant">Base</span>.<span class="ruby-identifier">facter_key</span>(<span class="ruby-ivar">@namespace</span>, <span class="ruby-identifier">key</span>)]&#x000A;      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">value</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">nil?</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000015-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 21</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">value</span>(<span class="ruby-identifier">key</span>)&#x000A;      <span class="ruby-identifier">f</span> = <span class="ruby-constant">Facter</span>[<span class="ruby-constant">Base</span>.<span class="ruby-identifier">facter_key</span>(<span class="ruby-ivar">@namespace</span>, <span class="ruby-identifier">key</span>)]&#x000A;      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">value</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">nil?</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
