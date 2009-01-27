@@ -5,7 +5,7 @@ Machine are doing on Moonshine[http://blog.railsmachine.com/articles/2009/01/16/
 
 ShadowFacter provides a DSL for creating facts and processing them using Facter.
 For documentation on writing these manifests, please see
-ShadowFacter::Base.
+{ShadowFacter::Base}[http://railsmachine.github.com/shadow_facter/classes/ShadowFacter/Base.html].
 
 A binary[http://railsmachine.github.com/shadow_facter/files/bin/shadow_facter.html] is provided to parse facts.
 
