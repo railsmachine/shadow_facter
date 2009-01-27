@@ -1,18 +1,28 @@
 #!/usr/bin/env ruby
+# Lens is a simple web server that returns facts as json using ShadowFacter.
+#
+#  $ examples/bin/lens examples/lib/facts.rb
 
 require 'rubygems'
 require 'sinatra'
 require 'shadow_facter'
+require 'json'
 
 filename = ARGV[0]
-raise ArgumentError unless filename
-
-require 'rubygems'
-require 'shadow_facter'
+raise ArgumentError, "Usage: lens FACT_FILE" unless filename
 
 load filename
 
+get '/' do
+  ns = {}
+  namespaces.each do |namespace|
+    j = facts namespace
+    ns[namespace] = j.to_hash
+  end
+  JSON.pretty_generate ns
+end
+
 get '/:name' do
-  j = facts params[:name].to_s
+  j = facts params[:name].to_sym
   j.to_json
 end
