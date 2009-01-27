@@ -1,34 +1,6 @@
 # ShadowFacter allows the simple definition and gathering of facts
 # using Facter[http://reductivelabs.com/projects/facter/]
 #
-#== Sample facts:
-#
-#  $ cat examples/lib/facts/kernel.rb
-#  require 'shadow_facter'
-#
-#  namespace :kernel do
-#    fact :name do
-#      exec "uname -s"
-#    end
-#
-#    fact :release do
-#      exec "uname -r"
-#    end
-#
-#    fact :version do
-#      value(:release).to_s.split('.')[0]
-#    end
-#  end
-#
-#== Executing this fact:
-#
-# $ bin/shadow_facter examples/lib/facts/kernel.rb
-# kernel_name => Darwin
-# kernel_version => 9
-# kernel_release => 9.6.0
-# $
-#
-
 
 require 'facter'
 
