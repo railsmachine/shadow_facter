@@ -46,10 +46,8 @@
             <h2>Methods</h2>
             <h3>public class</h3>
             <ol>
-              <li><a href="#M000011">current_key</a></li>
-              <li><a href="#M000010">current_namespace</a></li>
               <li><a href="#M000008">fact</a></li>
-              <li><a href="#M000012">facter_key</a></li>
+              <li><a href="#M000010">facter_key</a></li>
               <li><a href="#M000009">facts</a></li>
               <li><a href="#M000006">namespace</a></li>
               <li><a href="#M000007">namespaces</a></li>
@@ -58,32 +56,6 @@
           <div id='section'>
             <div id='methods'>
               <h2>Public class methods</h2>
-              <div class='public-class method' id='method-M000011'>
-                <a name='M000011'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>current_key</span>
-                  <span class='arguments'>(key)</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000011-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000011-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 104</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current_key</span>(<span class="ruby-identifier">key</span>)&#x000A;        <span class="ruby-identifier">facter_key</span>(<span class="ruby-identifier">current_namespace</span>, <span class="ruby-identifier">key</span>)&#x000A;      <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000010'>
-                <a name='M000010'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>current_namespace</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000010-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 100</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current_namespace</span>&#x000A;        <span class="ruby-ivar">@current_namespace</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
               <div class='public-class method' id='method-M000008'>
                 <a name='M000008'>      </a>
                 <div class='synopsis'>
@@ -92,32 +64,37 @@
                 </div>
                 <div class='description'>
                   <p>
-                  Defines a fact in Facter using a value or block. Can be confined with a
-                  hash.
+                  Define a fact in Facter using a value or block. Can be confined with a hash
+                  of Facter keys (namespace_key) and value.
                   </p>
                   <p>
                   Examples:
                   </p>
-                  <pre>fact :tea, &quot;oolong&quot;&#x000A;fact :tea, &quot;puerh&quot;, {:season =&gt; &quot;winter&quot;}&#x000A;fact(:rand) { rand }</pre>
+                  <pre>fact :tea, &quot;oolong&quot;&#x000A;fact :tea, &quot;puerh&quot;, {:drinks_season =&gt; &quot;winter&quot;}&#x000A;fact(:rand) { rand }</pre>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000008-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 85</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fact</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">confine_args</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Namespace required!&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_namespace</span>&#x000A;        <span class="ruby-ivar">@namespaces</span>[<span class="ruby-identifier">current_namespace</span>] <span class="ruby-operator">||=</span> []&#x000A;        <span class="ruby-ivar">@namespaces</span>[<span class="ruby-identifier">current_namespace</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">key</span>&#x000A;        <span class="ruby-identifier">block</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span> } <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block_given?</span>&#x000A;        <span class="ruby-constant">Facter</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">current_key</span>(<span class="ruby-identifier">key</span>)) <span class="ruby-keyword kw">do</span>&#x000A;          <span class="ruby-identifier">confine</span> <span class="ruby-identifier">confine_args</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">confine_args</span>.<span class="ruby-identifier">empty?</span>&#x000A;          <span class="ruby-identifier">setcode</span> <span class="ruby-identifier">block</span>&#x000A;        <span class="ruby-keyword kw">end</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000008-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 88</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fact</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">confine_args</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Namespace required!&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_namespace</span>&#x000A;        <span class="ruby-ivar">@namespaces</span>[<span class="ruby-identifier">current_namespace</span>] <span class="ruby-operator">||=</span> []&#x000A;        <span class="ruby-ivar">@namespaces</span>[<span class="ruby-identifier">current_namespace</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">key</span>&#x000A;        <span class="ruby-identifier">block</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span> } <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block_given?</span>&#x000A;        <span class="ruby-constant">Facter</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">current_key</span>(<span class="ruby-identifier">key</span>)) <span class="ruby-keyword kw">do</span>&#x000A;          <span class="ruby-identifier">confine</span> <span class="ruby-identifier">confine_args</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">confine_args</span>.<span class="ruby-identifier">empty?</span>&#x000A;          <span class="ruby-identifier">setcode</span> <span class="ruby-identifier">block</span>&#x000A;        <span class="ruby-keyword kw">end</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-class method' id='method-M000012'>
-                <a name='M000012'>      </a>
+              <div class='public-class method' id='method-M000010'>
+                <a name='M000010'>      </a>
                 <div class='synopsis'>
                   <span class='name'>facter_key</span>
                   <span class='arguments'>(namespace, key)</span>
                 </div>
+                <div class='description'>
+                  <p>
+                  Construct a namespaced key for using with Facter.
+                  </p>
+                </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000012-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 108</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">facter_key</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">key</span>)&#x000A;        (<span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">to_sym</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000010-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 105</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">facter_key</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">key</span>)&#x000A;        (<span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">to_sym</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-class method' id='method-M000009'>
@@ -126,11 +103,17 @@
                   <span class='name'>facts</span>
                   <span class='arguments'>(namespace)</span>
                 </div>
+                <div class='description'>
+                  <p>
+                  Return an instance of the <a href="Facts.html">Facts</a> class for the
+                  specified namespace.
+                  </p>
+                </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000009-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000009-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 96</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">facts</span>(<span class="ruby-identifier">namespace</span>)&#x000A;        <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Facts</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-ivar">@namespaces</span>[<span class="ruby-identifier">namespace</span>])&#x000A;      <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000009-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 100</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">facts</span>(<span class="ruby-identifier">namespace</span>)&#x000A;        <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Facts</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-ivar">@namespaces</span>[<span class="ruby-identifier">namespace</span>])&#x000A;      <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-class method' id='method-M000006'>
@@ -139,11 +122,16 @@
                   <span class='name'>namespace</span>
                   <span class='arguments'>(name) {|| ...}</span>
                 </div>
+                <div class='description'>
+                  <p>
+                  Define a namespace.
+                  </p>
+                </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000006-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000006-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 67</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespace</span>(<span class="ruby-identifier">name</span>)&#x000A;        <span class="ruby-ivar">@namespaces</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>&#x000A;        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Nested namespaces not supported yet!&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@current_namespace</span>.<span class="ruby-identifier">nil?</span>&#x000A;        <span class="ruby-ivar">@current_namespace</span> = <span class="ruby-identifier">name</span>&#x000A;        <span class="ruby-keyword kw">yield</span>&#x000A;        <span class="ruby-ivar">@current_namespace</span> = <span class="ruby-keyword kw">nil</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000006-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 68</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespace</span>(<span class="ruby-identifier">name</span>)&#x000A;        <span class="ruby-ivar">@namespaces</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>&#x000A;        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Nested namespaces not supported yet!&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@current_namespace</span>.<span class="ruby-identifier">nil?</span>&#x000A;        <span class="ruby-ivar">@current_namespace</span> = <span class="ruby-identifier">name</span>&#x000A;        <span class="ruby-keyword kw">yield</span>&#x000A;        <span class="ruby-ivar">@current_namespace</span> = <span class="ruby-keyword kw">nil</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-class method' id='method-M000007'>
@@ -152,11 +140,16 @@
                   <span class='name'>namespaces</span>
                   <span class='arguments'>()</span>
                 </div>
+                <div class='description'>
+                  <p>
+                  Return an array of defined namespaces names.
+                  </p>
+                </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000007-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000007-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 75</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>()&#x000A;        <span class="ruby-ivar">@namespaces</span>.<span class="ruby-identifier">keys</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000007-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 77</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>()&#x000A;        <span class="ruby-ivar">@namespaces</span>.<span class="ruby-identifier">keys</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

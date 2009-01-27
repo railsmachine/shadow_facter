@@ -32,7 +32,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>Tue Jan 27 11:22:35 -0500 2009</span>
+          <span class='datetime'>Tue Jan 27 11:45:07 -0500 2009</span>
         </div>
       </div>
       <div id='content'>
@@ -76,14 +76,14 @@
                 </div>
                 <div class='description'>
                   <p>
-                  System execute helper.
+                  Execute a system command via Facter.
                   </p>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000005-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000005-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 141</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exec</span>(<span class="ruby-identifier">command</span>)&#x000A;  <span class="ruby-constant">Facter</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolution</span>.<span class="ruby-identifier">exec</span>(<span class="ruby-identifier">command</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000005-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 148</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exec</span>(<span class="ruby-identifier">command</span>)&#x000A;  <span class="ruby-constant">Facter</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-constant">Resolution</span>.<span class="ruby-identifier">exec</span>(<span class="ruby-identifier">command</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000003'>
@@ -94,19 +94,16 @@
                 </div>
                 <div class='description'>
                   <p>
-                  Defines a fact in Facter using a value or block. Can be confined with a
-                  hash.
+                  Define a fact in Facter using a value or block. Can be confined with a hash
+                  of Facter keys (namespace_key) and value. Examples:
                   </p>
-                  <p>
-                  Examples:
-                  </p>
-                  <pre>fact :tea, &quot;oolong&quot;&#x000A;fact :tea, &quot;puerh&quot;, {:season =&gt; &quot;winter&quot;}&#x000A;fact(:rand) { rand }</pre>
+                  <pre>fact :tea, &quot;oolong&quot;&#x000A;fact :tea, &quot;puerh&quot;, {:drinks_season =&gt; &quot;winter&quot;}&#x000A;fact(:rand) { rand }</pre>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000003-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000003-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 131</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fact</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">confine_args</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">fact</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">confine_args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000003-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 138</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fact</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">confine_args</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">fact</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">confine_args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000004'>
@@ -117,14 +114,14 @@
                 </div>
                 <div class='description'>
                   <p>
-                  Returns an instance of the Facts class for the specified namespace.
+                  Return an instance of the Facts class for the specified namespace.
                   </p>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000004-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000004-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 136</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">facts</span>(<span class="ruby-identifier">namespace</span>)&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">facts</span>(<span class="ruby-identifier">namespace</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000004-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 143</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">facts</span>(<span class="ruby-identifier">namespace</span>)&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">facts</span>(<span class="ruby-identifier">namespace</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000002'>
@@ -135,14 +132,14 @@
                 </div>
                 <div class='description'>
                   <p>
-                  Defines a namespace
+                  Define a namespace.
                   </p>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000002-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000002-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 121</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespace</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">namespace</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000002-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 128</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespace</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">namespace</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)&#x000A;<span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='public-instance method' id='method-M000001'>
@@ -153,14 +150,14 @@
                 </div>
                 <div class='description'>
                   <p>
-                  Returns known namespaces
+                  Return an array of defined namespaces names.
                   </p>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000001-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000001-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 116</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>()&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">namespaces</span>&#x000A;<span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000001-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 123</span>&#x000A;<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>()&#x000A;  <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">namespaces</span>&#x000A;<span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
