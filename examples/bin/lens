@@ -13,6 +13,7 @@ raise ArgumentError, "Usage: lens FACT_FILE" unless filename
 
 load filename
 
+# Return all known facts as json.
 get '/' do
   ns = {}
   namespaces.each do |namespace|
@@ -22,6 +23,7 @@ get '/' do
   JSON.pretty_generate ns
 end
 
+# Return facts from /namespace as json.
 get '/:name' do
   j = facts params[:name].to_sym
   j.to_json
