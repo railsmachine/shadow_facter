@@ -7,9 +7,7 @@ describe "facts dsl" do
   end
 
   it "sets namespaces" do
-    namespace :test do
-      ShadowFacter::Base.current_namespace.should == :test
-    end
+    namespaces.first.should == :test
   end
 
   it "sets value using variable" do
