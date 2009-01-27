@@ -53,7 +53,7 @@ module ShadowFacter
       JSON.pretty_generate to_hash
     end
 
-    # Reload facts
+    # Reload facts in namespace.
     def reload!
       keys.each { |key| Facter[Base.facter_key(@namespace, key)].flush }
     end
@@ -76,11 +76,12 @@ module ShadowFacter
         @namespaces.keys
       end
 
-      # Defines a fact in Facter using a value or block. Can be confined with a hash.
+      # Defines a fact in Facter using a value or block. Can be confined with a hash
+      # of Facter keys (namespace_key) and value.
       #
       # Examples:
       #   fact :tea, "oolong"
-      #   fact :tea, "puerh", {:season => "winter"}
+      #   fact :tea, "puerh", {:drinks_season => "winter"}
       #   fact(:rand) { rand }
       def fact(key, value=nil, confine_args={}, &block)
         raise "Namespace required!" unless current_namespace
