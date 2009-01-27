@@ -7,6 +7,10 @@ namespace :test do
   
   fact :beer, "420", { "test_drink" => "beer"}
   fact :tea, "oolong", { "test_drink" => "tea"}
+  
+  fact :rand do
+    rand.to_s
+  end
 
 end
 

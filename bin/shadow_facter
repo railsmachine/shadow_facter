@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+# ShadowFacter allows the simple definition and gathering of facts 
+# using Facter[http://reductivelabs.com/projects/facter/].
+#
 #== Sample facts:
 #
 #  $ cat examples/lib/facts/kernel.rb 
@@ -24,7 +27,7 @@
 # kernel_name => Darwin
 # kernel_version => 9
 # kernel_release => 9.6.0
-#  $
+# $
 #
 # The shadow_facter binary parses the given ruby code, which is
 # expected to contain a definition of a namespace and some facts. Facts are 

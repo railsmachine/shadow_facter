@@ -32,11 +32,11 @@ describe "facts dsl" do
    end
 
    it "generates array of keys" do
-     @f.keys.size.should == 3
+     @f.keys.size.should == 4
    end
 
    it "generates a hash of facts" do
-     @f.to_hash.size.should == 3
+     @f.to_hash.size.should == 4
    end
 
    it "generates yaml of facts" do
@@ -47,5 +47,16 @@ describe "facts dsl" do
    it "generate json of facts" do
      require 'json'
      JSON.parse(@f.to_json).values.sort.should == @f.to_hash.values.sort
+   end
+   
+   it "returns namespaces" do
+     namespaces.size.should == 1
+     namespaces.first.should == :test  
+   end
+   
+   it "reloads keys" do
+     orig = @f[:rand]
+     @f.reload!
+     orig.should_not == @f[:rand]
    end
 end

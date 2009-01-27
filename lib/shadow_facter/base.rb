@@ -1,3 +1,35 @@
+# ShadowFacter allows the simple definition and gathering of facts 
+# using Facter[http://reductivelabs.com/projects/facter/]
+#
+#== Sample facts:
+#
+#  $ cat examples/lib/facts/kernel.rb 
+#  require 'shadow_facter'
+#
+#  namespace :kernel do
+#    fact :name do
+#      exec "uname -s"
+#    end
+#
+#    fact :release do
+#      exec "uname -r"
+#    end
+#
+#    fact :version do
+#      value(:release).to_s.split('.')[0]
+#    end
+#  end
+#
+#== Executing this fact:
+#
+# $ bin/shadow_facter examples/lib/facts/kernel.rb
+# kernel_name => Darwin
+# kernel_version => 9
+# kernel_release => 9.6.0
+# $
+#
+
+
 require 'facter'
 
 module ShadowFacter
@@ -8,12 +40,12 @@ module ShadowFacter
       @keys = keys
     end
     
-    # Returns a fact value by key. Returns nil if non-existent or not constrained.
+    # Return a fact value by key. Returns nil if non-existent or not constrained.
     def [](key)
       value(key)
     end
 
-    # Returns a fact value by key. Returns nil if non-existent or not constrained.
+    # Return a fact value by key. Returns nil if non-existent or not constrained.
     def value(key)
       f = Facter[Base.facter_key(@namespace, key)]
       f.value unless f.nil?
@@ -49,6 +81,11 @@ module ShadowFacter
       JSON.pretty_generate to_hash
     end
     
+    # Reload facts
+    def reload!
+      keys.each { |key| Facter[Base.facter_key(@namespace, key)].flush }
+    end
+    
   end
   
   
@@ -56,11 +93,15 @@ module ShadowFacter
     class << self
       
       def namespace(name)
-        @current_namespace ||= []
-        raise "Nested namespaces not supported yet!" if @current_namespace.last
-        @current_namespace.push name
+        @namespaces ||= Hash.new
+        raise "Nested namespaces not supported yet!" unless @current_namespace.nil?
+        @current_namespace = name
         yield
-        @current_namespace.pop
+        @current_namespace = nil
+      end
+      
+      def namespaces()
+        @namespaces.keys
       end
 
       # Defines a fact in Facter using a value or block. Can be confined with a hash.
@@ -70,9 +111,9 @@ module ShadowFacter
       #   fact :tea, "puerh", {:season => "winter"}
       #   fact(:rand) { rand }
       def fact(key, value=nil, confine_args={}, &block)
-        raise "Namespace required!" unless @current_namespace.last
-        @keys ||= Hash.new([])
-        @keys[current_namespace] << key
+        raise "Namespace required!" unless current_namespace
+        @namespaces[current_namespace] ||= []
+        @namespaces[current_namespace] << key
         block = lambda { value.to_s } unless block_given?
         Facter.add(current_key(key)) do
           confine confine_args unless confine_args.empty?
@@ -81,11 +122,11 @@ module ShadowFacter
       end
       
       def facts(namespace)
-        ShadowFacter::Facts.new(namespace, @keys[namespace])
+        ShadowFacter::Facts.new(namespace, @namespaces[namespace])
       end
       
       def current_namespace
-        @current_namespace.last
+        @current_namespace
       end
       
       def current_key(key)
@@ -97,6 +138,11 @@ module ShadowFacter
       end
     end
   end
+end
+
+# Returns known namespaces
+def namespaces()
+  ShadowFacter::Base.namespaces
 end
 
 # Defines a namespace

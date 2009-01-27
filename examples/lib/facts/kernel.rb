@@ -10,6 +10,6 @@ namespace :kernel do
   end
 
   fact :version do
-    value(:release).to_s.split('.')[0]
+    facts(:kernel)[:release].to_s.split('.')[0]
   end
 end

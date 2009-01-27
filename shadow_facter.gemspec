@@ -7,13 +7,13 @@ Gem::Specification.new do |s|
   s.date = %q{2009-01-19}
   s.description = %q{Wrapper library for Facter}
   s.email = ["bradley@railsmachine.com"]
-  s.default_executable = %q{sfacter}
-  s.executables = ["sfacter"]
+  s.default_executable = %q{shadow_facter}
+  s.executables = ["shadow_facter"]
   s.files = [
     "Readme",
     "lib/shadow_facter.rb",
     "lib/shadow_facter/base.rb",
-    "bin/sfacter"
+    "bin/shadow_facter"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://railsmachine.com}
