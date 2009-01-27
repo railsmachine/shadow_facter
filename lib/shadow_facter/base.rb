@@ -64,6 +64,7 @@ module ShadowFacter
   class Base
     class << self
 
+      # Define a namespace.
       def namespace(name)
         @namespaces ||= Hash.new
         raise "Nested namespaces not supported yet!" unless @current_namespace.nil?
@@ -72,11 +73,12 @@ module ShadowFacter
         @current_namespace = nil
       end
 
+      # Return an array of defined namespaces names.
       def namespaces()
         @namespaces.keys
       end
 
-      # Defines a fact in Facter using a value or block. Can be confined with a hash
+      # Define a fact in Facter using a value or block. Can be confined with a hash
       # of Facter keys (namespace_key) and value.
       #
       # Examples:
@@ -94,10 +96,16 @@ module ShadowFacter
         end
       end
 
+      # Return an instance of the Facts class for the specified namespace.
       def facts(namespace)
         ShadowFacter::Facts.new(namespace, @namespaces[namespace])
       end
 
+      # Construct a namespaced key for using with Facter.
+      def facter_key(namespace, key)
+        (namespace.to_s + "_" + key.to_s).to_sym
+      end
+      
       def current_namespace
         @current_namespace
       end
@@ -105,40 +113,38 @@ module ShadowFacter
       def current_key(key)
         facter_key(current_namespace, key)
       end
-
-      def facter_key(namespace, key)
-        (namespace.to_s + "_" + key.to_s).to_sym
-      end
+      
+      private :current_namespace, :current_key
     end
   end
 end
 
-# Returns known namespaces
+# Return an array of defined namespaces names.
 def namespaces()
   ShadowFacter::Base.namespaces
 end
 
-# Defines a namespace
+# Define a namespace.
 def namespace(name, &b)
   ShadowFacter::Base.namespace(name, &b)
 end
 
-# Defines a fact in Facter using a value or block. Can be confined with a hash.
-#
+# Define a fact in Facter using a value or block. Can be confined with a hash
+# of Facter keys (namespace_key) and value.
 # Examples:
 #   fact :tea, "oolong"
-#   fact :tea, "puerh", {:season => "winter"}
+#   fact :tea, "puerh", {:drinks_season => "winter"}
 #   fact(:rand) { rand }
 def fact(key, value=nil, confine_args={}, &b)
   ShadowFacter::Base.fact(key, value, confine_args, &b)
 end
 
-# Returns an instance of the Facts class for the specified namespace.
+# Return an instance of the Facts class for the specified namespace.
 def facts(namespace)
   ShadowFacter::Base.facts(namespace)
 end
 
-# System execute helper.
+# Execute a system command via Facter.
 def exec(command)
   Facter::Util::Resolution.exec(command)
 end
