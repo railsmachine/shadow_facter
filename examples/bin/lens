@@ -24,7 +24,7 @@ get '/' do
 end
 
 # Return facts from /namespace as json.
-get '/:name' do
-  j = facts params[:name].to_sym
+get '/:namespace' do
+  j = facts params[:namespace].to_sym
   j.to_json
 end
