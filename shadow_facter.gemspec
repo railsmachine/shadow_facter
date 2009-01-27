@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bradley Taylor"]
   s.date = %q{2009-01-19}
-  s.description = %q{Wrapper library for Facter}
+  s.description = %q{Ruby simple DSL wrapper library for Facter}
   s.email = ["bradley@railsmachine.com"]
   s.default_executable = %q{shadow_facter}
   s.executables = ["shadow_facter"]

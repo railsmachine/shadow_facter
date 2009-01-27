@@ -1,17 +1,17 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe "facts dsl" do
-  
+
   before :all do
     @f = facts(:test)
   end
-  
+
   it "sets namespaces" do
     namespace :test do
       ShadowFacter::Base.current_namespace.should == :test
     end
   end
-  
+
   it "sets value using variable" do
     @f.has_fact?(:drink).should be(true)
     @f[:drink].should == "tea"
@@ -21,7 +21,7 @@ describe "facts dsl" do
     @f.has_fact?(:food).should be(true)
     @f[:food].should == "pizza"
   end
-  
+
   it "namespaces facts in Facter" do
      Facter[:test_food].value.should == "pizza"
    end
@@ -48,12 +48,12 @@ describe "facts dsl" do
      require 'json'
      JSON.parse(@f.to_json).values.sort.should == @f.to_hash.values.sort
    end
-   
+
    it "returns namespaces" do
      namespaces.size.should == 1
-     namespaces.first.should == :test  
+     namespaces.first.should == :test
    end
-   
+
    it "reloads keys" do
      orig = @f[:rand]
      @f.reload!

@@ -8,3 +8,4 @@ For documentation on writing these manifests, please see
 ShadowFacter::Base.
 
 A binary[link:files/bin/shadow_facter.html] is provided to parse facts.
+

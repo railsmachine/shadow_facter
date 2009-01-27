@@ -1,9 +1,9 @@
-# ShadowFacter allows the simple definition and gathering of facts 
+# ShadowFacter allows the simple definition and gathering of facts
 # using Facter[http://reductivelabs.com/projects/facter/]
 #
 #== Sample facts:
 #
-#  $ cat examples/lib/facts/kernel.rb 
+#  $ cat examples/lib/facts/kernel.rb
 #  require 'shadow_facter'
 #
 #  namespace :kernel do
@@ -34,12 +34,12 @@ require 'facter'
 
 module ShadowFacter
   class Facts
-    
+
     def initialize(namespace, keys)
       @namespace = namespace
       @keys = keys
     end
-    
+
     # Return a fact value by key. Returns nil if non-existent or not constrained.
     def [](key)
       value(key)
@@ -63,7 +63,7 @@ module ShadowFacter
 
     # Return a hash of all of the constrained fact keys and values.
     def to_hash
-      keys.inject({}) do |h, k| 
+      keys.inject({}) do |h, k|
         h[k] = value(k)
         h
       end
@@ -80,18 +80,18 @@ module ShadowFacter
       require 'json'
       JSON.pretty_generate to_hash
     end
-    
+
     # Reload facts
     def reload!
       keys.each { |key| Facter[Base.facter_key(@namespace, key)].flush }
     end
-    
+
   end
-  
-  
+
+
   class Base
     class << self
-      
+
       def namespace(name)
         @namespaces ||= Hash.new
         raise "Nested namespaces not supported yet!" unless @current_namespace.nil?
@@ -99,7 +99,7 @@ module ShadowFacter
         yield
         @current_namespace = nil
       end
-      
+
       def namespaces()
         @namespaces.keys
       end
@@ -120,19 +120,19 @@ module ShadowFacter
           setcode block
         end
       end
-      
+
       def facts(namespace)
         ShadowFacter::Facts.new(namespace, @namespaces[namespace])
       end
-      
+
       def current_namespace
         @current_namespace
       end
-      
+
       def current_key(key)
         facter_key(current_namespace, key)
       end
-      
+
       def facter_key(namespace, key)
         (namespace.to_s + "_" + key.to_s).to_sym
       end

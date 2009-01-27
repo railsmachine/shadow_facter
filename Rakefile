@@ -13,7 +13,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
 
   rdoc.main = "Readme.rdoc" # page to start on
   rdoc.title = "ShadowFacter documentation"
-  
+
   rdoc.rdoc_dir = 'doc' # rdoc output folder
   rdoc.options << '--webcvs=http://github.com/railsmachine/shadow_facter/tree/master/'
 end
