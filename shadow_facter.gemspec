@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.2.0}
   s.summary = %q{Facter wrapper library}
 
-  s.add_dependency(%q<facter>, [">= 1.5.2"])
+  s.add_dependency(%q<facter>, [">= 1.5.3"])
 end
