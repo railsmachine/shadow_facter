@@ -1,67 +1,149 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang='en'>
-  <head>
-    <title>File: shadow_facter [ShadowFacter documentation]</title>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
-    <link href='../.././rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
-    <script type='text/javascript'>
-      //<![CDATA[
-        function popupCode(url) {
-          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
-        }
-        
-        function toggleCode(id) {
-          var code = document.getElementById(id)
-        
-          code.style.display = code.style.display != 'block' ? 'block' : 'none'
-          return true
-        }
-        
-        // Make codeblocks hidden by default
-        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
-      //]]>
-    </script>
-  </head>
-  <body class='page'>
-    <div class='file' id='wrapper'>
-      <div class='header'>
-        <h1 class='name'>shadow_facter</h1>
-        <div class='paths'>
-          bin/shadow_facter
-          (<a href="http://github.com/railsmachine/shadow_facter/tree/master/bin/shadow_facter">view online</a>)
-        </div>
-        <div class='last-update'>
-          Last Update:
-          <span class='datetime'>Wed Feb 18 14:14:26 -0500 2009</span>
-        </div>
-      </div>
-      <div id='content'>
-        <div id='text'>
-          <div id='description'>
-            <pre>ShadowFacter allows the simple definition and gathering of facts&#x000A;using Facter[http://reductivelabs.com/projects/facter/].</pre>
-            <h2>Sample facts:</h2>
-            <pre>$ cat examples/lib/facts/kernel.rb&#x000A;require 'shadow_facter'&#x000A;&#x000A;namespace :kernel do&#x000A;  fact :name do&#x000A;    exec &quot;uname -s&quot;&#x000A;  end&#x000A;&#x000A;  fact :release do&#x000A;    exec &quot;uname -r&quot;&#x000A;  end&#x000A;&#x000A;  fact :version do&#x000A;    facts(:kernel)[:release].to_s.split('.')[0]&#x000A;  end&#x000A;end</pre>
-            <h2>Executing this fact:</h2>
-            <pre>$ bin/shadow_facter examples/lib/facts/kernel.rb&#x000A;kernel_name =&gt; Darwin&#x000A;kernel_version =&gt; 9&#x000A;kernel_release =&gt; 9.6.0&#x000A;$&#x000A;&#x000A;The shadow_facter binary parses the given ruby code, which is&#x000A;expected to contain a definition of a namespace and some facts. Facts are&#x000A;gathered and outputed.</pre>
-          </div>
-          <div id='context'>
-            <div id='requires'>
-              <h2>Required files</h2>
-              <ol>
-                <li>optparse</li>
-                <li>rubygems</li>
-                <li>shadow_facter</li>
-              </ol>
-            </div>
-          </div>
-          <div id='section'>
-          </div>
-        </div>
-      </div>
-      <div id='footer-push'></div>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: shadow_facter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>shadow_facter</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>bin/shadow_facter
+        &nbsp;(<a href="http://github.com/railsmachine/shadow_facter/tree/master/bin/shadow_facter"><acronym title="Concurrent Versioning System">CVS</acronym></a>)
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Feb 20 10:32:16 -0500 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <pre>
+ ShadowFacter allows the simple definition and gathering of facts
+ using Facter[http://reductivelabs.com/projects/facter/].
+</pre>
+<h2>Sample facts:</h2>
+<pre>
+  $ cat examples/lib/facts/kernel.rb
+  require 'shadow_facter'
+
+  namespace :kernel do
+    fact :name do
+      exec &quot;uname -s&quot;
+    end
+
+    fact :release do
+      exec &quot;uname -r&quot;
+    end
+
+    fact :version do
+      facts(:kernel)[:release].to_s.split('.')[0]
+    end
+  end
+</pre>
+<h2>Executing this fact:</h2>
+<pre>
+ $ bin/shadow_facter examples/lib/facts/kernel.rb
+ kernel_name =&gt; Darwin
+ kernel_version =&gt; 9
+ kernel_release =&gt; 9.6.0
+ $
+
+ The shadow_facter binary parses the given ruby code, which is
+ expected to contain a definition of a namespace and some facts. Facts are
+ gathered and outputed.
+</pre>
+
     </div>
-    <div id='footer'>
-      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      optparse&nbsp;&nbsp;
+      rubygems&nbsp;&nbsp;
+      shadow_facter&nbsp;&nbsp;
+      </div>
     </div>
-  </body>
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
 </html>

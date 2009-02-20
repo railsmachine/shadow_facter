@@ -1,165 +1,225 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang='en'>
-  <head>
-    <title>Class: ShadowFacter::Base [ShadowFacter documentation]</title>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
-    <link href='../.././rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
-    <script type='text/javascript'>
-      //<![CDATA[
-        function popupCode(url) {
-          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
-        }
-        
-        function toggleCode(id) {
-          var code = document.getElementById(id)
-        
-          code.style.display = code.style.display != 'block' ? 'block' : 'none'
-          return true
-        }
-        
-        // Make codeblocks hidden by default
-        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
-      //]]>
-    </script>
-  </head>
-  <body class='page'>
-    <div class='class' id='wrapper'>
-      <div class='header'>
-        <h1 class='name'>
-          <span class='type'>Class</span>
-          ShadowFacter::Base
-        </h1>
-        <ol class='paths'>
-          <li>
-            <a href="../../files/lib/shadow_facter/base_rb.html">lib/shadow_facter/base.rb</a>
-            (<a href="http://github.com/railsmachine/shadow_facter/tree/master/lib/shadow_facter/base.rb">view online</a>)
-          </li>
-        </ol>
-        <div class='parent'>
-          Parent:
-          <strong>Object</strong>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ShadowFacter::Base</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ShadowFacter::Base</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/shadow_facter/base_rb.html">
+                lib/shadow_facter/base.rb
+                </a>
+        &nbsp;(<a href="http://github.com/railsmachine/shadow_facter/tree/master/lib/shadow_facter/base.rb"><acronym title="Concurrent Versioning System">CVS</acronym></a>)
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000003">fact</a>&nbsp;&nbsp;
+      <a href="#M000005">facter_key</a>&nbsp;&nbsp;
+      <a href="#M000004">facts</a>&nbsp;&nbsp;
+      <a href="#M000001">namespace</a>&nbsp;&nbsp;
+      <a href="#M000002">namespaces</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000003.html');return false;">
+          <span class="method-name">fact</span><span class="method-args">(key, value=nil, confine_args={}, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Define a <a href="Base.html#M000003">fact</a> in Facter using a value or
+block. Can be confined with a hash of Facter keys (namespace_key) and
+value.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  fact :tea, &quot;oolong&quot;
+  fact :tea, &quot;puerh&quot;, {:drinks_season =&gt; &quot;winter&quot;}
+  fact(:rand) { rand }
+</pre>
         </div>
       </div>
-      <div id='content'>
-        <div id='text'>
-          <div id='method-list'>
-            <h2>Methods</h2>
-            <h3>public class</h3>
-            <ol>
-              <li><a href="#M000008">fact</a></li>
-              <li><a href="#M000010">facter_key</a></li>
-              <li><a href="#M000009">facts</a></li>
-              <li><a href="#M000006">namespace</a></li>
-              <li><a href="#M000007">namespaces</a></li>
-            </ol>
-          </div>
-          <div id='section'>
-            <div id='methods'>
-              <h2>Public class methods</h2>
-              <div class='public-class method' id='method-M000008'>
-                <a name='M000008'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>fact</span>
-                  <span class='arguments'>(key, value=nil, confine_args={}, &amp;block)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Define a fact in Facter using a value or block. Can be confined with a hash
-                  of Facter keys (namespace_key) and value.
-                  </p>
-                  <p>
-                  Examples:
-                  </p>
-                  <pre>fact :tea, &quot;oolong&quot;&#x000A;fact :tea, &quot;puerh&quot;, {:drinks_season =&gt; &quot;winter&quot;}&#x000A;fact(:rand) { rand }</pre>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000008-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 88</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fact</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">confine_args</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)&#x000A;        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Namespace required!&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_namespace</span>&#x000A;        <span class="ruby-ivar">@namespaces</span>[<span class="ruby-identifier">current_namespace</span>] <span class="ruby-operator">||=</span> []&#x000A;        <span class="ruby-ivar">@namespaces</span>[<span class="ruby-identifier">current_namespace</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">key</span>&#x000A;        <span class="ruby-identifier">block</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span> } <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block_given?</span>&#x000A;        <span class="ruby-constant">Facter</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">current_key</span>(<span class="ruby-identifier">key</span>)) <span class="ruby-keyword kw">do</span>&#x000A;          <span class="ruby-identifier">confine</span> <span class="ruby-identifier">confine_args</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">confine_args</span>.<span class="ruby-identifier">empty?</span>&#x000A;          <span class="ruby-identifier">setcode</span> <span class="ruby-identifier">block</span>&#x000A;        <span class="ruby-keyword kw">end</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000010'>
-                <a name='M000010'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>facter_key</span>
-                  <span class='arguments'>(namespace, key)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Construct a namespaced key for using with Facter.
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000010-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 105</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">facter_key</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">key</span>)&#x000A;        (<span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">to_sym</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000009'>
-                <a name='M000009'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>facts</span>
-                  <span class='arguments'>(namespace)</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Return an instance of the <a href="Facts.html">Facts</a> class for the
-                  specified namespace.
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000009-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000009-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 100</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">facts</span>(<span class="ruby-identifier">namespace</span>)&#x000A;        <span class="ruby-constant">ShadowFacter</span><span class="ruby-operator">::</span><span class="ruby-constant">Facts</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-ivar">@namespaces</span>[<span class="ruby-identifier">namespace</span>])&#x000A;      <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000006'>
-                <a name='M000006'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>namespace</span>
-                  <span class='arguments'>(name) {|| ...}</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Define a namespace.
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000006-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000006-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 68</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespace</span>(<span class="ruby-identifier">name</span>)&#x000A;        <span class="ruby-ivar">@namespaces</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>&#x000A;        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Nested namespaces not supported yet!&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@current_namespace</span>.<span class="ruby-identifier">nil?</span>&#x000A;        <span class="ruby-ivar">@current_namespace</span> = <span class="ruby-identifier">name</span>&#x000A;        <span class="ruby-keyword kw">yield</span>&#x000A;        <span class="ruby-ivar">@current_namespace</span> = <span class="ruby-keyword kw">nil</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-              <div class='public-class method' id='method-M000007'>
-                <a name='M000007'>      </a>
-                <div class='synopsis'>
-                  <span class='name'>namespaces</span>
-                  <span class='arguments'>()</span>
-                </div>
-                <div class='description'>
-                  <p>
-                  Return an array of defined namespaces names.
-                  </p>
-                </div>
-                <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000007-source'); return false">
-                    [show source]
-                  </a>
-                  <pre id='M000007-source'><span class="ruby-comment cmt"># File lib/shadow_facter/base.rb, line 77</span>&#x000A;      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">namespaces</span>()&#x000A;        <span class="ruby-ivar">@namespaces</span>.<span class="ruby-identifier">keys</span>&#x000A;      <span class="ruby-keyword kw">end</span></pre>
-                </div>
-              </div>
-            </div>
-          </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000005.html');return false;">
+          <span class="method-name">facter_key</span><span class="method-args">(namespace, key)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Construct a namespaced key for using with Facter.
+</p>
         </div>
       </div>
-      <div id='footer-push'></div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000004.html');return false;">
+          <span class="method-name">facts</span><span class="method-args">(namespace)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an instance of the <a href="Facts.html">Facts</a> class for the
+specified <a href="Base.html#M000001">namespace</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000001.html');return false;">
+          <span class="method-name">namespace</span><span class="method-args">(name) {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Define a <a href="Base.html#M000001">namespace</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000002.html');return false;">
+          <span class="method-name">namespaces</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an array of defined <a href="Base.html#M000002">namespaces</a>
+names.
+</p>
+        </div>
+      </div>
+
+
     </div>
-    <div id='footer'>
-      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
-    </div>
-  </body>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
 </html>
